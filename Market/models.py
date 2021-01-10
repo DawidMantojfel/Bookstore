@@ -3,7 +3,6 @@ from Users.models import User
 # Create your models here.
 
 
-# Create your models here.
 class Book(models.Model):
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
@@ -20,15 +19,15 @@ class Market(models.Model):
     bo uzytkownik moze miec wiele ksiazek  i jedna
     ksiazka moze miec wielu uzytkownikow '''
 
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
-    book = models.ForeignKey('Book', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.PROTECT)
     price = models.FloatField()
-    sold = models.BooleanField(default=False)
     condition = models.CharField(max_length=4, choices=CONDITION_CHOICES)
     date = models.DateTimeField(auto_now_add=True)
+    sold = models.BooleanField(default=False)
 
 
 class Opinion(models.Model):
-    book = models.ForeignKey('Book', on_delete=models.CASCADE)
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     opinion = models.CharField(max_length=2000)
