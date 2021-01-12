@@ -5,8 +5,14 @@
     <title>Title</title>
 </head>
 <body>
+{% if user.is_authenticated %}
+    HI {{ user.username }}
     <button>
         <a href="{% url 'logout' %}">Log Out</a>
     </button>
+{% else %}
+    <p>You are not logged in</p>
+{% endif %}
+
 </body>
 </html>
