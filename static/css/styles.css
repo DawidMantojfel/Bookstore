@@ -1,0 +1,56 @@
+*{
+padding: 0;
+margin: 0;
+text-decoration: none;
+box-sizing: border-box;
+}
+body{
+font-family: Hachi Maru Pop;
+}
+nav{
+background-image: linear-gradient(to right, rgba(21, 21, 96, 1), rgba(45, 45, 205, 1));
+height: 60px;
+}
+label.logo{
+color: white;
+font-size: 30px;
+line-height: 60px;
+padding: 0 80px;
+font-weight: bold;
+}
+nav ul{
+float: right;
+margin-right: 20px;
+}
+nav ul li{
+display: inline-block;
+line-height: 60px;
+margin 0 5px;
+}
+nav ul li a{
+color: white;
+padding: 7px 30px;
+font-size: 20px;
+border-radius: 7px;
+}
+a.active, a:hover{
+background: #202092;
+transition .5s;
+}
+nav ul li input.search{
+color: white
+}
+#search {
+width: 240px;
+font-size: 20px;
+border: 1px solid #ddd;
+border-radius: 7px;
+padding: 7px 15px;
+margin-right: 10px;
+background-color: #d5ecf6;
+}
+.fa-search{
+font-size: 25px;
+color: white;
+margin-right: 10px;
+}
