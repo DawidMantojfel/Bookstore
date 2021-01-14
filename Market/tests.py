@@ -16,5 +16,13 @@ class MarketTest(TestCase):
             self.book.delete()
 
 
+class OpinionTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(first_name='Karolina', last_name='Nowak', e_mail='Karolinanowak@gmail.com')
+        self.book = Book.objects.create(title='103 ciasta siostry anastazji', author='Karol Marks', rate=5)
+        self.opinion = Opinion.objects.create(book=self.book, user=self.user, opinion='This is really good book')
 
-
+    '''i want to check what will happen with Opinion when i delete user'''
+    def test_remove_user(self):
+        self.user.delete()
+        self.assertIsNone(self.opinion)
