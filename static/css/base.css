@@ -28,7 +28,7 @@ margin: 0 5px;
 nav ul li a{
 color: white;
 padding: 7px 30px;
-font-size: 20px;
+font-size: 15px;
 border-radius: 7px;
 }
 a.active, a:hover{
@@ -36,15 +36,14 @@ background: #202092;
 transition: .5s;
 }
 nav ul li input.search{
-color: white
+color: white;
 }
 #search {
-width: 240px;
+width: 200px;
 font-size: 20px;
 border: 1px solid #ddd;
 border-radius: 7px;
 padding: 7px 15px;
-margin-right: 10px;
 background-color: #d5ecf6;
 }
 .fa-search{

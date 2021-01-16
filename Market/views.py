@@ -31,6 +31,6 @@ class BookDetailView(DetailView):
 
 def book_search(request):
     search_query = request.GET.get('search')
-    books = Book.objects.filer(title_icontains=search_query)
+    books = Book.objects.filter(title_icontains=search_query)
     print(books)
     return render(request, "market/search.html")
