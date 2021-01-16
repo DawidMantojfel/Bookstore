@@ -27,3 +27,9 @@ class BookDetailView(DetailView):
     model = Market
     template_name = 'market/market_detail.html'
     context_object_name = 'market'
+
+
+def book_search(request):
+    search_query = request.GET.get('search')
+    print(search_query)
+    return render(request, "market/search.html")

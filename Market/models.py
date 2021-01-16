@@ -8,7 +8,7 @@ class Book(models.Model):
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
     rate = models.FloatField(null=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
-    description = models.CharField(max_length=5000, null=True)
+    description = models.CharField(max_length=5000, null=True, blank=True)
 
     def __str__(self):
         return f"{self.title} by {self.author}"
