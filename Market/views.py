@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from .models import Market
+from .models import Market, Book
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
@@ -31,5 +31,6 @@ class BookDetailView(DetailView):
 
 def book_search(request):
     search_query = request.GET.get('search')
-    print(search_query)
+    books = Book.objects.filer(title_icontains=search_query)
+    print(books)
     return render(request, "market/search.html")

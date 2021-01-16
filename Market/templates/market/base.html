@@ -12,7 +12,7 @@
         <label class="logo">BookStore</label>
         <ul>
             <li>
-                <form method="GET">
+                <form method="GET" action="{% url 'book_search' %}">
                     <input type="text" id="search" name="search" placeholder="Search for books..">
                 </form>
             </li>
