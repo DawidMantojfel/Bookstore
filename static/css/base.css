@@ -36,9 +36,10 @@ background: #202092;
 transition: .5s;
 }
 nav ul li input.search{
-color: white;
+color: black;
 }
-#search {
+
+.search{
 width: 200px;
 font-size: 20px;
 border: 1px solid #ddd;

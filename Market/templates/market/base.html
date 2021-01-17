@@ -13,11 +13,10 @@
         <ul>
             <li>
                 <form method="GET" action="{% url 'book_search' %}">
-                    <input type="text" id="search" name="author_search" placeholder="Author">
-                    <input type="text" id="search" name="title_search" placeholder="Title">
+                    <input type="text" class="search" name="search" placeholder="Search Books..">
                 </form>
             </li>
-            <li><i class="fas fa-search"></i></li>
+            <li><button class="fas fa-search" ></button></li>
             <li><a class="active" href="#">Home</a></li>
             <li><a href="#">Market</a></li>
             <li><a href="#">About</a></li>

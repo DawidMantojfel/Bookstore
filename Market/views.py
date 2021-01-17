@@ -1,6 +1,7 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from .models import Market, Book
+from .models import Book, Market
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
@@ -30,7 +31,14 @@ class BookDetailView(DetailView):
 
 
 def book_search(request):
-    search_query = request.GET.get('search')
-    books = Book.objects.filter(title_icontains=search_query)
-    print(books)
-    return render(request, "market/search.html")
+    context = {}
+    queryset = []
+    if request.method == 'GET':
+        user_query = request.GET.get('search').split(' ')
+        for query in user_query:
+            result = Book.objects.filter(
+                Q(title__icontains=query) |
+                Q(author__icontains=query))
+            queryset.append(result)
+    context['books'] = queryset
+    return render(request, "market/search.html", context)
