@@ -2,8 +2,10 @@ from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from .models import Book, Market
+from .forms import BookOffer
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+import requests
 
 
 # generic view
@@ -31,14 +33,32 @@ class BookDetailView(DetailView):
 
 
 def book_search(request):
+    results = []
     context = {}
-    queryset = []
     if request.method == 'GET':
-        user_query = request.GET.get('search').split(' ')
-        for query in user_query:
-            result = Book.objects.filter(
-                Q(title__icontains=query) |
-                Q(author__icontains=query))
-            queryset.append(result)
-    context['books'] = queryset
+        api_key = 'AIzaSyAZ3oOt4i0cX6i8Uc2Fn1I2NlLM4AZQA1Y'
+        user_query = request.GET.get('search')
+        url = f'https://www.googleapis.com/books/v1/volumes?q={user_query}'
+        response_title = requests.request('GET', url).json()
+        print(response_title)
+        for result in response_title['items']:
+            results.append(result['volumeInfo']['title'])
+            results.append(result['volumeInfo']['authors'])
+        context['books'] = results
+
+
+
+
+    # response = requests.request("POST", url)
+
     return render(request, "market/search.html", context)
+
+
+def book_add(request):
+    if request.method == "POST":
+        form = BookOffer(request.POST)
+        if form.is_valid():
+            form.save()
+    form = BookOffer()
+    context = {'form': form}
+    return render(request, 'market/add_book.html', context)

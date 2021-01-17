@@ -33,9 +33,10 @@ class Market(models.Model):
 
 
 class Opinion(models.Model):
+    '''kto wystawil, komu i tresc'''
     book = models.ForeignKey(Book, on_delete=models.PROTECT)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    opinion = models.CharField(max_length=2000)
+    # opinion = models.CharField(max_length=2000)
 
     def __str__(self):
         return f"Opinion By '{self.user}' on '{self.book}'"

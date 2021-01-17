@@ -5,8 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-    {% for book in books %}
-    {{ book }}<br>
-    {% endfor %}
+    {% if books %}
+        {% for book in books %}
+            {{ book }}<br>
+        {% endfor %}
+    <a href="{% url 'home' %}">Home</a>
+    {% else %}
+    <h2>No results</h2>
+    <a href="{% url 'home' %}">Home</a>
+    <p>There were no results matching you search: {{ user_query }}</p>
+    {% endif %}
+
 </body>
 </html>

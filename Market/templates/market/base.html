@@ -12,11 +12,16 @@
         <label class="logo">BookStore</label>
         <ul>
             <li>
-                <form method="GET" action="{% url 'book_search' %}">
-                    <input type="text" class="search" name="search" placeholder="Search Books..">
+                <form method="GET" action="{% url 'book_add' %}">
+                    <button type="submit" class="fas fa-plus"></button>
                 </form>
             </li>
-            <li><button class="fas fa-search" ></button></li>
+            <li>
+                <form method="GET" action="{% url 'book_search' %}">
+                    <input type="text" class="search" name="search" placeholder="Search Books..">
+                    <button type="submit" class="fas fa-search" ></button>
+                </form>
+            </li>
             <li><a class="active" href="#">Home</a></li>
             <li><a href="#">Market</a></li>
             <li><a href="#">About</a></li>
