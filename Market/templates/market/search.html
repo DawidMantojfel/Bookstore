@@ -1,20 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% extends 'market/base.html' %}
+{% block content %}
 <body>
+<div class="container">
     {% if books %}
-        {% for book in books %}
-            {{ book }}<br>
-        {% endfor %}
-    <a href="{% url 'home' %}">Home</a>
-    {% else %}
-    <h2>No results</h2>
-    <a href="{% url 'home' %}">Home</a>
-    <p>There were no results matching you search: {{ user_query }}</p>
+    {% for book in books %}
+      <div class="row">
+        <div class="col">
+          <ul class="list-group block">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <p>{{ book.title }}</p>
+                <br>
+                <p>authors: {{ book.authors }}</p>
+              <div class="image-parent">
+                  <img src="{{ book.image }}" class="img-fluid" alt="quixote">
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    {% endfor %}
     {% endif %}
+</div>
 
 </body>
-</html>
+{% endblock content %}
+
+
+
+
+

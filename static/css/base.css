@@ -4,7 +4,7 @@ margin: 0;
 text-decoration: none;
 box-sizing: border-box;
 }
-nav{
+nav.navbar{
 background-image: linear-gradient(to right, rgba(21, 21, 96, 1), rgba(45, 45, 205, 1));
 height: 60px;
 font-family: Hachi Maru Pop;
@@ -13,7 +13,7 @@ label.logo{
 color: white;
 font-size: 30px;
 line-height: 60px;
-padding: 0 80px;
+padding: 0 60px;
 font-weight: bold;
 }
 nav ul{
@@ -22,8 +22,8 @@ margin-right: 20px;
 }
 nav ul li{
 display: inline-block;
-line-height: 60px;
-margin: 0 5px;
+line-height: 40px;
+margin: 0 10px;
 }
 nav ul li a{
 color: white;
@@ -35,28 +35,24 @@ a.active, a:hover{
 background: #202092;
 transition: .5s;
 }
-nav ul li input.search{
-color: black;
-}
-
 .search{
+padding: 10px;
+font-family: Noto Sans JP;
 width: 200px;
+height: 40px;
 font-size: 20px;
 border: 1px solid #ddd;
 border-radius: 7px;
-padding: 7px 15px;
 background-color: #d5ecf6;
 }
 .fa-search{
 font-size: 25px;
 color: white;
-margin-right: 10px;
-}
-#market_list{
-font-family: Noto Sans JP;
-font-size: 25px;
 }
 .fa-plus{
 color: white;
 size: 3x;
+}
+.image-parent {
+  max-width: 40px;
 }

@@ -5,7 +5,9 @@ from .models import Book, Market
 from .forms import BookOffer
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.core.paginator import Paginator
 import requests
+
 
 
 # generic view
@@ -33,23 +35,37 @@ class BookDetailView(DetailView):
 
 
 def book_search(request):
-    results = []
+    books = []
     context = {}
+
+    class Book:
+        def __init__(self, authors, title, image=None):
+            self.authors = authors
+            self.title = title
+            self.image = image
+
+        def __str__(self):
+            return f'{self.title} by  {self.authors}'
+
     if request.method == 'GET':
         api_key = 'AIzaSyAZ3oOt4i0cX6i8Uc2Fn1I2NlLM4AZQA1Y'
         user_query = request.GET.get('search')
         url = f'https://www.googleapis.com/books/v1/volumes?q={user_query}'
-        response_title = requests.request('GET', url).json()
-        print(response_title)
-        for result in response_title['items']:
-            results.append(result['volumeInfo']['title'])
-            results.append(result['volumeInfo']['authors'])
-        context['books'] = results
+        response = requests.request('GET', url).json()
+        for result in response['items']:
+            title = result['volumeInfo'].get('title')
+            authors = result['volumeInfo'].get('authors')
+            image = result['volumeInfo'].get('imageLinks')
+            image_link = image.get('smallThumbnail', None) if image else None
+            book = Book(authors=" ".join(authors) if authors else authors, title=title, image=image_link)
+            books.append(book)
 
+    p = Paginator(books, 25)
+    page = request.GET.get('page')
+    books = p.get_page(page)
 
-
-
-    # response = requests.request("POST", url)
+    context['paginator'] = p
+    context['books'] = books
 
     return render(request, "market/search.html", context)
 
