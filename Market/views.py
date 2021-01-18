@@ -50,7 +50,7 @@ def book_search(request):
     if request.method == 'GET':
         api_key = 'AIzaSyAZ3oOt4i0cX6i8Uc2Fn1I2NlLM4AZQA1Y'
         user_query = request.GET.get('search')
-        url = f'https://www.googleapis.com/books/v1/volumes?q={user_query}'
+        url = f'https://www.googleapis.com/books/v1/volumes?q={user_query}&maxResults=40'
         response = requests.request('GET', url).json()
         for result in response['items']:
             title = result['volumeInfo'].get('title')
@@ -59,13 +59,14 @@ def book_search(request):
             image_link = image.get('smallThumbnail', None) if image else None
             book = Book(authors=" ".join(authors) if authors else authors, title=title, image=image_link)
             books.append(book)
-
     p = Paginator(books, per_page=25)
-    page = request.GET.get('page')
-    books = p.get_page(page)
+    page = p.get_page(1)
 
-    context['paginator'] = p
-    context['books'] = books
+    context = {
+        'books': books,
+        'page': page,
+        'count': p.count
+    }
 
     return render(request, "market/search.html", context)
 

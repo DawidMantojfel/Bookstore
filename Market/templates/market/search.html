@@ -3,7 +3,8 @@
 <body>
 <div class="container">
     {% if books %}
-    {% for book in books %}
+    <h2>Total Number of books: {{ count }}</h2>
+    {% for book in page.object_list %}
       <div class="row">
         <div class="col-m-10 col-m-offset-1 col-md-12 col-md-offset-2">
           <ul class="list-group block">
@@ -12,7 +13,7 @@
                 <br>
                 <p>authors: {{ book.authors }}</p>
               <div class="image-parent">
-                  <img src="{{ book.image }}" class="img-fluid" alt="quixote">
+                  <img src="{{ book.image }}" class="img-fluid" alt="">
               </div>
             </li>
           </ul>
