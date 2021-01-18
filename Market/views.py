@@ -60,7 +60,7 @@ def book_search(request):
             book = Book(authors=" ".join(authors) if authors else authors, title=title, image=image_link)
             books.append(book)
 
-    p = Paginator(books, 25)
+    p = Paginator(books, per_page=25)
     page = request.GET.get('page')
     books = p.get_page(page)
 
