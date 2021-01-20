@@ -1,15 +1,12 @@
 {% extends 'market/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-{% crispy form %}
 <body>
-<p>
-{{ form|crispy}}
-    <form method="POST" action="{% url 'home' %}">
+    <form method="post">
         {% csrf_token %}
+        {{ form|crispy }}
         <button type="submit" class="btn btn-primary">Add</button>
     </form>
-</p>
 </body>
 </html>
 {% endblock content %}

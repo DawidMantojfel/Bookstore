@@ -5,6 +5,8 @@
 <div class="container">
     {% if books %}
     <h2>Total Number of books: {{ count }}</h2>
+    <form method="post" action="{% url 'book_add' book.id %}">
+    {% csrf_token %}
     {% for book in page.object_list %}
       <div class="row">
         <div class="col-m-10 col-m-offset-1 col-md-12 col-md-offset-2">
@@ -13,19 +15,18 @@
                 <p>{{ book.title }}</p>
                 <br>
                 <p>authors: {{ book.authors }}</p>
-            {% if book.image %}
+                {% if book.image %}
                 <p><img src="{{ book.image }}" class="img-fluid-right" alt=""></p>
-            {% else %}
+                {% else %}
                 <p><img width="128" height="213" src="{% static 'images/default.jpg' %}" alt=""></p>
-            {% endif %}
-                <p><form method="GET" action="{% url 'book_add' %}">
-                    <button type="submit" class="btn btn-outline-primary">Add</button>
-                </form></p>
+                {% endif %}
+                <button type="submit" class="btn btn-outline-primary">Add</button>
             </li>
           </ul>
         </div>
       </div>
     {% endfor %}
+    </form>
     {% endif %}
 
 </div>

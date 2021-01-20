@@ -22,7 +22,7 @@ class Market(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.PROTECT)
-    price = models.FloatField()
+    price = models.IntegerField()
     condition = models.CharField(max_length=4, choices=CONDITION_CHOICES)
     date = models.DateTimeField(auto_now_add=True)
     sold = models.BooleanField(default=False)

@@ -5,4 +5,5 @@ from django.forms import ModelForm
 class BookOffer(ModelForm):
     class Meta:
         model = Market
-        fields = ['book', 'price', 'condition']
+        fields = ['user', 'book', 'price', 'condition']
+

@@ -1,7 +1,0 @@
-{% extends 'market/base.html' %}
-{% block content %}
-    {% for book in market %}
-    <p id="market_list">{{ book }}</p>
-    <a href="{% url 'market_detail' book.id %}">LINK</a>
-    {% endfor %}
-{% endblock content %}
