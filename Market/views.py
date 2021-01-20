@@ -50,7 +50,7 @@ def book_search(request):
     if request.method == 'GET':
         api_key = 'AIzaSyAZ3oOt4i0cX6i8Uc2Fn1I2NlLM4AZQA1Y'
         user_query = request.GET.get('search')
-        url = f'https://www.googleapis.com/books/v1/volumes?q={user_query}&maxResults=40'
+        url = f'https://www.googleapis.com/books/v1/volumes?q={user_query}&maxResults=40&printType=books&maxResults=40'
         response = requests.request('GET', url).json()
         for result in response['items']:
             title = result['volumeInfo'].get('title')
@@ -59,13 +59,15 @@ def book_search(request):
             image_link = image.get('smallThumbnail', None) if image else None
             book = Book(authors=" ".join(authors) if authors else authors, title=title, image=image_link)
             books.append(book)
-    p = Paginator(books, per_page=25)
+
+
+    p = Paginator(books, per_page=40)
     page = p.get_page(1)
 
     context = {
         'books': books,
         'page': page,
-        'count': p.count
+        'count': p.count,
     }
 
     return render(request, "market/search.html", context)
@@ -79,3 +81,11 @@ def book_add(request):
     form = BookOffer()
     context = {'form': form}
     return render(request, 'market/add_book.html', context)
+
+class BooksListView(ListView):
+    model = Market
+    ''' Fajnie by było żeby użytkownik mógł zmieniać ilość elementów wyswietlenia na stronie (default = 25)
+    w generic view jest to dosc latwe bo do context django przekazuje obiekt Paginator który mozna modyfikowac '''
+    paginate_by = 25
+    ordering = '-date'
+    context_object_name = 'market'

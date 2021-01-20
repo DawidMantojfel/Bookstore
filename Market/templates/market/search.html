@@ -1,4 +1,5 @@
 {% extends 'market/base.html' %}
+{% load static %}
 {% block content %}
 <body>
 <div class="container">
@@ -12,15 +13,21 @@
                 <p>{{ book.title }}</p>
                 <br>
                 <p>authors: {{ book.authors }}</p>
-              <div class="image-parent">
-                  <img src="{{ book.image }}" class="img-fluid" alt="">
-              </div>
+            {% if book.image %}
+                <p><img src="{{ book.image }}" class="img-fluid-right" alt=""></p>
+            {% else %}
+                <p><img width="128" height="213" src="{% static 'images/default.jpg' %}" alt=""></p>
+            {% endif %}
+                <p><form method="GET" action="{% url 'book_add' %}">
+                    <button type="submit" class="btn btn-outline-primary">Add</button>
+                </form></p>
             </li>
           </ul>
         </div>
       </div>
     {% endfor %}
     {% endif %}
+
 </div>
 
 </body>
