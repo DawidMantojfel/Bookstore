@@ -5,7 +5,7 @@ text-decoration: none;
 box-sizing: border-box;
 }
 nav.navbar{
-background-image: linear-gradient(to right, rgba(21, 21, 96, 1), rgba(45, 45, 205, 1));
+background-image: linear-gradient(to right, #4d2800, #804200);
 height: 60px;
 font-family: Hachi Maru Pop;
 }
@@ -32,27 +32,20 @@ font-size: 15px;
 border-radius: 7px;
 }
 a.active, a:hover{
-background: #202092;
+background: #452400;
 transition: .5s;
 }
+::placeholder{
+color: black;
+}
 .search{
+color: black;
 padding: 10px;
 font-family: Noto Sans JP;
 width: 200px;
 height: 40px;
 font-size: 20px;
-border: 1px solid #ddd;
+border: 1px solid black;
 border-radius: 7px;
-background-color: #d5ecf6;
-}
-.fa-search{
-font-size: 25px;
-color: white;
-}
-.fa-plus{
-color: white;
-size: 3x;
-}
-.image-parent {
-  max-width: 40px;
+background-color: #8F7B66;
 }

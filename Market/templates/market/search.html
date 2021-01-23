@@ -5,22 +5,21 @@
 <div class="container">
     {% if books %}
     <h2>Total Number of books: {{ count }}</h2>
-    <form method="post" action="{% url 'book_add' book.id %}">
-    {% csrf_token %}
-    {% for book in page.object_list %}
+    {% for book in books %}
       <div class="row">
         <div class="col-m-10 col-m-offset-1 col-md-12 col-md-offset-2">
           <ul class="list-group block">
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <p>{{ book.title }}</p>
-                <br>
                 <p>authors: {{ book.authors }}</p>
                 {% if book.image %}
                 <p><img src="{{ book.image }}" class="img-fluid-right" alt=""></p>
                 {% else %}
                 <p><img width="128" height="213" src="{% static 'images/default.jpg' %}" alt=""></p>
                 {% endif %}
-                <button type="submit" class="btn btn-outline-primary">Add</button>
+                <form method="get" action="{% url 'book_add' book.id %}">
+                    <button type="submit" class="btn btn-outline-primary">Add</button>
+                </form>
             </li>
           </ul>
         </div>
@@ -33,9 +32,6 @@
 
 </body>
 {% endblock content %}
-{% block pagination %}
-{% endblock pagination %}
-
 
 
 

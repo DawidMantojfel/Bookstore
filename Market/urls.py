@@ -6,5 +6,5 @@ urlpatterns = [
     path('', home, name='home'),
     path('detail/<int:pk>/', BookDetailView.as_view(), name='market_detail'),
     path('search/', book_search, name='book_search'),
-    path('add/', book_add, name='book_add'),
+    path('add/<int:id>', book_add, name='book_add'),
 ]
