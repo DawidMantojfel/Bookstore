@@ -1,8 +1,25 @@
 {% extends 'market/base.html' %}
 {% load static %}
 {% block content %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('myBtn').addEventListener('click', () => {
+    document.querySelector('.bg-modal').style.display ='flex';
+    });
+    document.querySelector(".close").addEventListener('click',() => {
+    document.querySelector('.bg-modal').style.display ='none';
+    });
+    });
+</script>
 <body>
+<div class=”bg-modal”>
+        <div class=”modal-content”>
+            cokolwiek
+<!--                            <div class=”close”> + </div>-->
+        </div>
+</div>
 <div class="container">
+
     {% if books %}
     <h2>Total Number of books: {{ count }}</h2>
     {% for book in books %}
@@ -17,9 +34,12 @@
                 {% else %}
                 <p><img width="128" height="213" src="{% static 'images/default.jpg' %}" alt=""></p>
                 {% endif %}
-                <form method="get" action="{% url 'book_add' book.id %}">
-                    <button type="submit" class="btn btn-outline-primary">Add</button>
-                </form>
+                <button id="myBtn" class="btn btn-outline-primary">Add
+                </button>
+
+<!--                <form method="get" action="{% url 'book_add' book.id %}">-->
+<!--                    -->
+<!--                </form>-->
             </li>
           </ul>
         </div>

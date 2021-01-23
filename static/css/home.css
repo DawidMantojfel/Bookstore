@@ -1,0 +1,50 @@
+div {
+background-color: #947b5f;
+margin: auto;
+position: relative;
+width: 50%;
+height: 200px;
+border-left: 5px solid #4a4035;
+border-right: 5px solid #4a4035;
+border-top: 2.5px solid #4a4035;
+border-bottom: 2.5px solid #4a4035;
+padding: 50px;
+font-size: 20px;
+text-align: center;
+}
+#link {
+position: absolute;
+right: 20px;
+bottom: 20px;
+color: #753e02;
+}
+#link:hover {
+color: black;
+}
+.fa-plus{
+color: #273b26;
+position: absolute;
+right: 20px;
+top: 20px;
+}
+#title-label{
+position: absolute;
+top: 5px;
+left: 5px;
+}
+#author-label{
+position: absolute;
+top: 5px;
+left: 185px;
+}
+#title{
+position: absolute;
+    font-size: 15px;
+    width: 150px;
+left: 20px;
+}
+#author {
+    font-size: 15px;
+position: absolute;
+left: 200px
+}
