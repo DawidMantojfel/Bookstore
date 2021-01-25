@@ -1,0 +1,28 @@
+{% extends 'market/base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static '/css/home.css' %}" rel="stylesheet">
+    <title>BookMarket</title>
+</head>
+
+<body>
+
+{% for book in books %}
+    <div>
+        <label id="title-label" for="title">Title</label>
+        <p id="title">{{ book.title }}</p>
+        <label id="author-label" for="author">Author</label>
+        <p id="author">{{ book.author }}</p>
+        <label for="user">Seller</label>
+        <p id="user">{{ book.user }}</p>
+        <p><img src="{{ book.image }}" alt=""></p>
+        <a id="link" href="{% url 'market_detail' book.id %}">Details</a>
+        <a href="#"><i class="fas fa-plus"><br>Buy</i></a>
+    </div>
+{% endfor %}
+</body>
+{% endblock content %}
+
