@@ -4,6 +4,7 @@ from .forms import BookOffer
 from django.views.generic.detail import DetailView
 import requests
 
+
 def home(request):
     products = Product.objects.filter(sold=False)
     context = {'books': products}
@@ -21,7 +22,7 @@ books = []
 
 def book_search(request):
     context = {}
-
+    form = BookOffer()
     class Book:
         def __init__(self,id, authors, title, description, image=None):
             self.id = id
@@ -31,10 +32,10 @@ def book_search(request):
             self.description = description
 
         def __str__(self):
-            return f'{self.id}, {self.title}, {self.authors}'
+            return f'{self.image}'
 
     if request.method == 'GET':
-        api_key = 'AIzaSyAZ3oOt4i0cX6i8Uc2Fn1I2NlLM4AZQA1Y'
+        books = []
         user_query = request.GET.get('search')
         url = f'https://www.googleapis.com/books/v1/volumes?q={user_query}&printType=books&maxResults=40'
         response = requests.request('GET', url).json()
@@ -44,7 +45,7 @@ def book_search(request):
             title = result['volumeInfo'].get('title')
             authors = result['volumeInfo'].get('authors')
             image = result['volumeInfo'].get('imageLinks')
-            image_link = image.get('smallThumbnail', None) if image else None
+            image_link = image.get('smallThumbnail') if image else "/static/images/default.jpg"
             description = result['volumeInfo'].get('description')
             book = Book(id=id, authors=" ".join(authors) if authors else authors,
                         title=title,
@@ -52,15 +53,25 @@ def book_search(request):
                         description=description)
             books.append(book)
 
+    elif request.method == 'POST':
+        user = request.user
+        form = BookOffer(request.POST)
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.user = user
+            product.save()
+            return redirect('home')
+
     context = {
         'books': books,
         'count': len(books),
+        'form': form,
     }
 
     return render(request, "market/search.html", context)
 
 
-def book_add(request, title, authors):
+def book_add(request):
     if request.method == "POST":
         user = request.user
         form = BookOffer(data=request.POST, files=request.FILES)
@@ -70,11 +81,7 @@ def book_add(request, title, authors):
             product.save()
             return redirect('home')
 
-    if books:
-        form = BookOffer(initial={'author': authors, 'title': title})
-    else:
-        form = BookOffer()
-
+    form = BookOffer()
     context = {'form': form}
     return render(request, 'market/add_book.html', context)
 

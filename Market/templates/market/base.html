@@ -8,22 +8,50 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/579463f4a6.js" crossorigin="anonymous"></script>
     <link href="{% static '/css/base.css' %}" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
     <title>BookMarket</title>
+    <script>
+        $(document).ready(function() {
+            document.querySelectorAll('.myBtn').forEach(item =>{
+                item.addEventListener('click', () => {
+                    document.querySelector('.bg-modal').style.display = 'flex';
+                    var button_row = item.parentElement
+                    button_row.childNodes.forEach(child =>{
+                        if (child.className === 'title-of-book'){
+                            document.getElementById('input-title').value = child.innerText
+                        }
+                        if (child.className === 'authors-of-book') {
+                            document.getElementById('input-authors').value = child.innerText
+                        }
+                        if (child.className === 'img-fluid-right') {
+                            document.getElementById('modal-image').src = child.src
+                            document.getElementById('input-image').value = child.src
+                        }
+                    });
+                    })
+                });
+            document.querySelector(".close").addEventListener('click', () => {
+                document.querySelector('.bg-modal').style.display = 'none';
+                });
+            });
+
+    </script>
 </head>
 <body>
     <nav class="navbar">
-        <label class="logo">BookStore</label>
+        <label class="logo"><a id="home" href="{% url 'home' %}">BookStore</a></label>
         <ul>
             {% if user.is_authenticated %}
             <li>
-                <h2 style="color: white; font-family: Noto Sans JP; font-size: 15px;">Hello {{ user|title }}</h2>
+                <h2>Hello {{ user|title }}</h2>
             </li>
             <li>
-                <a style="color: white; font-family: Noto Sans JP; font-size: 15px;" href="{% url 'logout' %}">Logout</a>
+                <a href="{% url 'logout' %}">Logout</a>
             </li>
             {% else %}
             <li>
-                <a style="color: white; font-family: Noto Sans JP; font-size: 15px;" href="{% url 'login' %}">Login</a>
+                <a href="{% url 'login' %}">Login</a>
             </li>
             {% endif %}
             <li>

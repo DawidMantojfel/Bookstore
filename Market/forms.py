@@ -5,10 +5,9 @@ from django import forms
 
 class BookOffer(ModelForm):
 
-    # user = forms.CharField(disabled=True)
 
     class Meta:
         model = Product
-        fields = ['title', 'author', 'price', 'condition']
-        widgets = {'user': forms.HiddenInput}
+        fields = ['title', 'author', 'price', 'condition', 'image']
+        widgets = {'user': forms.HiddenInput, 'image': forms.HiddenInput}
 

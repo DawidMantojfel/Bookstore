@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
 {% for book in books %}
     <div>
         <label id="title-label" for="title">Title</label>
@@ -17,6 +18,7 @@
         <p id="author">{{ book.author }}</p>
         <label for="user">Seller</label>
         <p id="user">{{ book.user }}</p>
+        <p><img src="{{ book.image }}" alt=""></p>
         <a id="link" href="{% url 'market_detail' book.id %}">Details</a>
         <a href="#"><i class="fas fa-plus"><br>Buy</i></a>
     </div>

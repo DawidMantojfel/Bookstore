@@ -16,6 +16,8 @@ class Product(models.Model):
     author = models.CharField(max_length=100, null=True)
     # book description
     description = models.CharField(max_length=5000, null=True, blank=True)
+    # book image
+    image = models.URLField(blank=True, null=True)
     # price of the book
     price = models.FloatField()
     condition = models.CharField(max_length=4, choices=CONDITION_CHOICES)

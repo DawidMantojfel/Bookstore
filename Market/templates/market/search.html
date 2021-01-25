@@ -1,55 +1,44 @@
 {% extends 'market/base.html' %}
 {% load static %}
 {% block content %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('myBtn').addEventListener('click', () => {
-    document.querySelector('.bg-modal').style.display ='flex';
-    });
-    document.querySelector(".close").addEventListener('click',() => {
-    document.querySelector('.bg-modal').style.display ='none';
-    });
-    });
-</script>
 <body>
-<div class=”bg-modal”>
-        <div class=”modal-content”>
-            cokolwiek
-<!--                            <div class=”close”> + </div>-->
-        </div>
-</div>
 <div class="container">
-
-    {% if books %}
-    <h2>Total Number of books: {{ count }}</h2>
-    {% for book in books %}
-      <div class="row">
-        <div class="col-m-10 col-m-offset-1 col-md-12 col-md-offset-2">
-          <ul class="list-group block">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <p>{{ book.title }}</p>
-                <p>authors: {{ book.authors }}</p>
-                {% if book.image %}
-                <p><img src="{{ book.image }}" class="img-fluid-right" alt=""></p>
-                {% else %}
-                <p><img width="128" height="213" src="{% static 'images/default.jpg' %}" alt=""></p>
-                {% endif %}
-                <button id="myBtn" class="btn btn-outline-primary">Add
-                </button>
-
-<!--                <form method="get" action="{% url 'book_add' book.id %}">-->
-<!--                    -->
-<!--                </form>-->
-            </li>
-          </ul>
-        </div>
-      </div>
-    {% endfor %}
-    </form>
-    {% endif %}
-
+{% if books %}
+<h2>Total Number of books: {{ count }}</h2>
+{% for book in books %}
+  <div class="row">
+    <div class="col-m-10 col-m-offset-1 col-md-12 col-md-offset-2">
+      <ul class="list-group block">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <p class="title-of-book">{{ book.title }}</p>
+            <p class="authors-of-book">{{ book.authors }}</p>
+            <img width="128" height="200" src="{{ book.image }}" class="img-fluid-right" alt="">
+            <button id="btn" type="button" class="myBtn btn btn-secondary">sell</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+{% endfor %}
+{% endif %}
 </div>
-
+    <div class="bg-modal" >
+        <div class="modal-content">
+            <form method="post">
+                {% csrf_token %}
+                <label for="input-title"></label>
+                <input name="title" type="text" id="input-title" readonly/>
+                <br>
+                <label for="input-authors"></label>
+                <input name="author" type="text" id="input-authors" />
+                <p id="form-price">{{ form.price }}</p>
+                <p id="form-condition">{{ form.condition }}</p>
+                <input value="" type="text" name="image" id="input-image" hidden />
+                <img name="image-name" width="100" height="133" id="modal-image" src="" alt="" >
+                <button type="submit" class="sell-btn">sell</button>
+            </form>
+            <div class="close"> + </div>
+        </div>
+    </div>
 </body>
 {% endblock content %}
 
