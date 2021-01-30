@@ -1,16 +1,21 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm
+from django.contrib.auth import logout
 from django.contrib import messages
-
-
-def register(request):
-    if request.method == "POST":
-        form = UserRegisterForm(request.POST)
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUserForm
+from django.contrib import messages
+from Market.views import home
+def registerPage(request):
+    form = CreateUserForm()
+    if request.method =='POST':
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for ' + user)
             return redirect('login')
-    form = UserRegisterForm
-    return render(request, 'registration/register.html', {"form": form})
+    context = {'form': form}
+    return render(request, 'Users/register.html', context)
+
+def loginPage(request):
+    context = {}
+    return render(request, 'Users/login.html', context)
 
