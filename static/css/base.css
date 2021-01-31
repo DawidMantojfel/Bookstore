@@ -1,7 +1,7 @@
 nav.navbar{
 background-image: linear-gradient(to right, #4d2800, #804200);
 height: 60px;
-font-family: Hachi Maru Pop;
+font-family: 'Roboto Mono', monospace;
 }
 label.logo{
 color: white;
@@ -141,4 +141,7 @@ cursor: pointer;
  width: 10px;
  background-color: #4d2800;
  color: #753e02;
+}
+.register_background {
+ background-color:  #4d2800
 }
