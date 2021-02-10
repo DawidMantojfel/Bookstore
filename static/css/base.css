@@ -1,7 +1,8 @@
 nav.navbar{
 background-image: linear-gradient(to right, #4d2800, #804200);
 height: 60px;
-font-family: 'Roboto Mono', monospace;
+font-family: Hachi Maru Pop;
+border-bottom: #333333 solid 1px;
 }
 label.logo{
 color: white;
@@ -84,18 +85,21 @@ background-color: #8F7B66;
 }
 .bg-modal {
 width: 100%;
-height:100%;
-background-color: rgba(0,0,0,0.5); /* make it half transparent */
-position: absolute;
-top:0px;
+height:100vh;
+background-color: rgba(0,0,0,0.8); /* make it half transparent */
+position: fixed;
+left: 0;
+top:0;
 z-index: 1;
 display: none;  /* It will remain invisible until you open */
 justify-content: center; /*center horizontally*/
 align-items: center ; /* center vertically */
 }
 .modal-content {
-width:400px;
-height:230px;
+justify-content: left;
+display: flex;
+width:25%;
+height:37%;
 background-color: #c9c5bb;
 border:none;
 border-radius: 15px;
@@ -112,13 +116,9 @@ cursor: pointer;
 }
 #modal-image {
  position: absolute;
- top: 10px;
+ top: 25px;
  right: 50px;
  border-radius: 8px;
-}
-#input-title, #input-authors{
- border:none;
- background-color: #c9c5bb;
 }
 .sell-btn {
  position: absolute;
@@ -135,13 +135,8 @@ cursor: pointer;
 .sell-btn:hover {
  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-#form-condition{
-}
-#form-price {
- width: 10px;
- background-color: #4d2800;
- color: #753e02;
-}
-.register_background {
- background-color:  #4d2800
+#msg{
+ font-family: 'Roboto', sans-serif;
+ text-align: center;
+ font-size: 30px;
 }

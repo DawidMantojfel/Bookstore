@@ -1,42 +1,64 @@
 {% extends 'market/base.html' %}
 {% load static %}
 {% block content %}
+<html lang="en">
 <head>
-    <script src="{% static 'js/sell_buttons.js' %}"></script>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link href="{% static '/css/search.css' %}" rel="stylesheet">
 </head>
 <body>
-<div class="container">
 {% if books %}
-<h2>Total Number of books: {{ count }} </h2>
-{% for book in books %}
-  <div class="row">
-    <div class="col-m-10 col-m-offset-1 col-md-12 col-md-offset-2">
-      <ul class="list-group block">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            <p class="title-of-book">{{ book.title }}</p>
-            <p class="authors-of-book">{{ book.authors }}</p>
-            <img width="128" height="200" src="{{ book.image }}" class="img-fluid-right" alt="">
-            <button id="btn" type="button" class="myBtn btn btn-secondary">sell</button>
-        </li>
-      </ul>
+<div class="contain">
+    <div class="flexbox-container">
+        <h2 id="total">Found: {{ count }} books</h2>
+        {% for book in books %}
+            <div class="flex-row">
+                <a id="img_container" href="{% url 'product_detail' book.id %}">
+                    <img src="{{ book.image }}" id="image" alt="">
+                </a>
+                <div class="row-right">
+                    <div class="title-author">
+                        <p class="title"><small><i>TITLE:</i><br></small>{{ book.title }}</p>
+                        {% if book.description %}
+                            <p id="description"><small><i>DESCRIPTION:</i><br></small>{{book.description}}</p>
+                        {% endif %}
+                        <p class="author"><small><i>AUTHOR:</i><br></small>{{ book.authors }}</p>
+                    </div>
+                    <div>
+                        <button id="btn" type="button" class="myBtn sell_btn">Sell This Book</button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-  </div>
-{% endfor %}
-{% endif %}
 </div>
+{% else %}
+<div class="nothing-found">
+    <img src="/static/images/nothing_found.png" alt="">
+</div>
+{% endif %}
+
     <div class="bg-modal" >
         <div class="modal-content">
             <form method="post">
                 {% csrf_token %}
-                <label for="input-title"></label>
-                <input name="title" type="text" id="input-title" readonly/>
+                <label><small>title: </small></label>
                 <br>
-                <label for="input-authors"></label>
-                <input name="author" type="text" id="input-authors" />
-                <p id="form-price">{{ form.price }}</p>
-                <p id="form-condition">{{ form.condition }}</p>
+                <input id="input-title" name="title" type="text" readonly/>
+                <br>
+                <label><small>authors: </small></label>
+                <br>
+                <input id="input-authors" name="author" type="text" readonly/>
+                <br>
+                <label><small>price:</small></label>
+                <p>{{ form.price }}</p>
+                <label><small>quantity:</small></label>
+                <p>{{ form.quantity }}</p>
+                <label><small>condition:</small></label>
+                <p>{{ form.condition }}</p>
                 <input value="" type="text" name="image" id="input-image" hidden />
-                <img name="image-name" width="100" height="133" id="modal-image" src="" alt="" >
+                <img name="image-name" width="150" height="250" id="modal-image" src="" alt="none" >
                 <button type="submit" class="sell-btn">sell</button>
             </form>
             <div class="close"> + </div>

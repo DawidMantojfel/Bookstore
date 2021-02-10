@@ -9,6 +9,34 @@
     <script src="https://kit.fontawesome.com/579463f4a6.js" crossorigin="anonymous"></script>
     <link href="{% static '/css/base.css' %}" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        // --- function to get csrf token---
+        var user = '{{ request.user }}'
+
+        function getToken(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getToken('csrftoken');
+
+        // --- function to set timer for displayed messages ---
+        setTimeout(function(){
+            if ($('#msg').length > 0){
+                $('#msg').remove();
+            }
+        }, 7000)
+    </script>
 
     <title>BookMarket</title>
     <script src="{% static 'js/search.js' %}"></script>
@@ -19,7 +47,7 @@
         <ul>
             {% if user.is_authenticated %}
             <li>
-                <h2>Hello {{ user|title }}</h2>
+                <h2>Hello {{ user|title }} !</h2>
             </li>
             <li>
                 <a href="{% url 'logout' %}">Logout</a>
@@ -34,14 +62,17 @@
                     <input type="text" class="search" name="search" placeholder="Search Books..">
                 </form>
             </li>
-            <li><a class="active" href="{% url 'home' %}">Home</a></li>
-            <li><a href="#">Market</a></li>
+            <li><a class="active" href="{% url 'home' %}">Market</a></li>
+            <li><a href="#">Profile</a></li>
             <li><a href="#">About</a></li>
             {% if user.is_authenticated %}
-            <li><a href="#">Basket</a></li>
+            <li><a href="{% url 'basket' %}">Basket</a></li>
             {% endif %}
         </ul>
     </nav>
-
+    <div class="message">
+        {% include 'market/messages.html' %}
+    </div>
+</body>
     {% block content %}
     {% endblock content %}

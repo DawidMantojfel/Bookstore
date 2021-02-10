@@ -1,0 +1,7 @@
+2. it should show messages when:
+        - you trying to put more books to basket than existing quantity(should be changed-
+            now is displaying in basket instead of home.html)
+        - you delete the book
+        - login
+        - logout
+5. finish the market_detail.html so it can show description and rate of the book

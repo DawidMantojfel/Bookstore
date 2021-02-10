@@ -1,0 +1,102 @@
+.background{
+    position: absolute;
+    height: 100vh;
+    background-color: #f5e5d5;
+}
+/*-----cart items-------*/
+.cart-page{
+    margin:20px auto;
+}
+table{
+    border-radius: 8px;
+    background-color: white;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+.cart-info{
+    display: flex;
+}
+#title-author-price{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+#image{
+    height: 150px;
+    width: 120px;
+    border-radius: 4px;
+}
+th{
+    text-align: left;
+    padding: 5px;
+    color: #452400;
+    background: #b35900;
+    border-radius: 2px;
+    font-family: 'Potta One', cursive;
+    font-weight: 600;
+    font-size: 20px;
+}
+td{
+    padding: 10px 5px;
+}
+tr{
+    border-bottom: solid 1px #f4e8dd;
+}
+td input{
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+}
+#detail-link:hover{
+    background: none;
+}
+.title-author-price{
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+}
+td a{
+    color: #ff523b;
+    font-size: 12px;
+}
+td img{
+    width: 80px;
+    height: 120px;
+    margin-right: 10px;
+}
+td p {
+    font-family: 'Big Shoulders Display', cursive;
+    font-weight: 200;
+    font-size: 15px;
+}
+.total-price{
+    margin-top: 50px;
+
+}
+.total-price table{
+    border-top: 1px solid #ff523b;
+    max-width: 400px;
+    font-weight: bold;
+    font-family: 'Potta One', cursive;
+}
+td:last-child{
+    text-align: right;
+}
+th:last-child{
+    text-align: right;
+}
+#image-only{
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    background-image: url("/static/images/empty_cart.png");
+    background-repeat: no-repeat;
+}
+#quantity ,#condition, .subtotal{
+    border-right: solid 1px #f4e8dd;
+    font-weight: 500;
+    font-family: 'Potta One', cursive;
+}

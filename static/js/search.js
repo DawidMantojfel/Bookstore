@@ -17,7 +17,10 @@ $(document).ready(function() {
             });
             })
         });
-    document.querySelector(".close").addEventListener('click', () => {
-        document.querySelector('.bg-modal').style.display = 'none';
-        });
-    });
+     document.querySelectorAll(".close").forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelector('.bg-modal').style.display = 'none';
+            })
+        },
+    )
+})
