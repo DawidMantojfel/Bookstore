@@ -1,50 +1,98 @@
-div {
-background-color: #947b5f;
-margin: auto;
-position: relative;
-width: 50%;
-height: 200px;
-border-left: 5px solid #4a4035;
-border-right: 5px solid #4a4035;
-border-top: 2.5px solid #4a4035;
-border-bottom: 2.5px solid #4a4035;
-padding: 50px;
-font-size: 20px;
-text-align: center;
+.contain{
+    background-color: #e6bf97;
 }
-#link {
-position: absolute;
-right: 20px;
-bottom: 20px;
-color: #753e02;
+.flexbox-container{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 40px;
+    width: 70%;
 }
-#link:hover {
-color: black;
+.flex-row{
+    justify-content: flex-start;
+    background-color: #f5e5d5;
+    border-radius: 4px;
+    width: 100%;
+    margin: 6px;
+    border: #7E635578 1px solid;
+    padding: 5px 5px 15px 5px;
+    display: flex;
+    flex-direction: row;
 }
-.fa-plus{
-color: #273b26;
-position: absolute;
-right: 20px;
-top: 20px;
+#image{
+    height: 197px;
+    width: 160px;
+    border-radius: 4px;
+    margin-right: 5px;
 }
-#title-label{
-position: absolute;
-top: 5px;
-left: 5px;
+.right{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 }
-#author-label{
-position: absolute;
-top: 5px;
-left: 185px;
+.flex-row a:hover{
+    background: none;
+}
+.title-author{
+    max-width: 80%;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 100%;
 }
 #title{
-position: absolute;
-    font-size: 15px;
-    width: 150px;
-left: 20px;
+    justify-content: left;
+    /*word-wrap: break-word;*/
+    color: black;
+    font-size: 17px;
+    font-weight: 500;
+    padding-bottom: 7px;
+    border-bottom: #EFEBE9 solid 1px;
 }
-#author {
-    font-size: 15px;
-position: absolute;
-left: 200px
+#title:hover{
+    font-weight: 400;
+    background: none;
+    text-decoration: black;
+}
+#author{
+    /*word-wrap: break-word;  is the same for flex-wrap: wrap*/
+    font-size: 16px;
+    font-weight: 200;
+}
+#date{
+    font-style: italic;
+    font-size: 10px;
+}
+.price-details{
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.fa-plus{
+    font-size: 40px;
+    color: black;
+}
+.top{
+    align-items: flex-end;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#add-to-cart{
+    font-size: 11px;
+    font-weight: 200;
+}
+.price{
+    font-weight: bold;
+}
+.update-cart{
+    background: none;
+    border: none;
 }

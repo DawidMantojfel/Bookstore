@@ -1,0 +1,61 @@
+{% extends 'market/base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basket</title>
+    <link href="{% static '/css/basket.css' %}" rel="stylesheet">
+    <script src="{% static 'js/total_price.js' %}"></script>
+</head>
+<body>
+<!---- cart item details ----->
+{% if items %}
+<div class="background">
+    <div class="cart-page">
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Condition</th>
+                <th>Subtotal</th>
+            </tr>
+            {% for item in items %}
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <a id="detail-link" href="{% url 'product_detail' item.product.id %}"><img id="image" src="{{item.product.image}}" alt="none"></a>
+                        <div id="title-author-price">
+                            <p>{{item.product.title}}</p>
+                            <p><small>by: {{item.product.author}}</small></p>
+                            <small>Price: ${{item.product.price}}</small>
+                            <br>
+                            <input class="product-price" type="text" value="{{item.product.price}}" hidden>
+                            <a href="{% url 'delete_from_cart' item.product.id %}">Remove</a>
+                        </div>
+                    </div>
+                </td>
+                <td id="quantity"><input name="quantity" type="number" value="{{ item.quantity }}" max="{{item.product.quantity}}" min="0"></td>
+                <td id="condition">{{ item.product.condition }} </td>
+                <td class="subtotal">${{item.product.price}}</td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+        <div class="total-price">
+            <table>
+                <tr>
+                    <td>Total</td>
+                    <td id="total"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% else %}
+<div id="image-only"></div>
+{% endif %}
+</body>
+</html>
+{% endblock content %}
