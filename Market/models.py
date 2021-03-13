@@ -98,3 +98,16 @@ class ShippingAddress(models.Model):
 
     def __str__(self):
         return self.address
+
+
+# This is class of a Book for storage and saving to database.
+class BookModel:
+    def __init__(self, id, authors, title, description, image=None):
+        self.id = id
+        self.authors = authors
+        self.title = title
+        self.image = image
+        self.description = description
+
+    def __str__(self):
+        return f'{self.image}'
