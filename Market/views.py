@@ -106,7 +106,6 @@ def book_search(request):
 
     elif request.method == 'POST':
         user = request.user
-        print(user)
         form = BookOffer(request.POST)
         if form.is_valid():
             product = form.save(commit=False)

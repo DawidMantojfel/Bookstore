@@ -18,11 +18,11 @@
                 </a>
                 <div class="row-right">
                     <div class="title-author">
-                        <p class="title">{{ book.title }}</p>
+                        <p class="title"><small><i>TITLE:</i><br></small>{{ book.title }}</p>
                         {% if book.description %}
                         <p id="description"><small><i>DESCRIPTION:</i><br></small>{{book.description}}</p>
                         {% endif %}
-                        <p class="author">{{ book.authors }}</p>
+                        <p class="author"><small><i>AUTHOR:</i><br></small>{{ book.authors }}</p>
                     </div>
                     <div>
                         <button id="btn" type="button" class="myBtn sell_btn">Sell This Book</button>
