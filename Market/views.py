@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import *
+from .models import BookModel as Book
 from .forms import BookOffer
 from django.views.generic.detail import DetailView
 import requests
@@ -76,27 +77,12 @@ class BookDetailView(DetailView):
     context_object_name = 'product'
 
 
-books = []
-
-
 def book_search(request):
     context = {}
     form = BookOffer()
     books = []
 
-    class Book:
-        def __init__(self, id, authors, title, description, image=None):
-            self.id = id
-            self.authors = authors
-            self.title = title
-            self.image = image
-            self.description = description
-
-        def __str__(self):
-            return f'{self.image}'
-
     if request.method == 'GET':
-
         user_query = request.GET.get('search')
         url = f'https://www.googleapis.com/books/v1/volumes?q={user_query}&printType=books&maxResults=40'
         response = requests.request('GET', url).json()
@@ -117,12 +103,13 @@ def book_search(request):
                 books.append(book)
         else:
             messages.warning(request, f'THERE IS NO BOOK WITH NAME "{user_query}"')
+
     elif request.method == 'POST':
         user = request.user
         form = BookOffer(request.POST)
         if form.is_valid():
             product = form.save(commit=False)
-            product.user = user
+            product.User = user
             product.save()
             return redirect('home')
 

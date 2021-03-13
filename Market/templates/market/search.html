@@ -7,7 +7,6 @@
     <title>Search</title>
     <link href="{% static '/css/search.css' %}" rel="stylesheet">
 </head>
-<body>
 {% if books %}
 <div class="contain">
     <div class="flexbox-container">
@@ -21,7 +20,7 @@
                     <div class="title-author">
                         <p class="title"><small><i>TITLE:</i><br></small>{{ book.title }}</p>
                         {% if book.description %}
-                            <p id="description"><small><i>DESCRIPTION:</i><br></small>{{book.description}}</p>
+                        <p id="description"><small><i>DESCRIPTION:</i><br></small>{{book.description}}</p>
                         {% endif %}
                         <p class="author"><small><i>AUTHOR:</i><br></small>{{ book.authors }}</p>
                     </div>
@@ -45,11 +44,11 @@
                 {% csrf_token %}
                 <label><small>title: </small></label>
                 <br>
-                <input id="input-title" name="title" type="text" readonly/>
+                <input id="input-title" value="" name="title" type="text" readonly/>
                 <br>
                 <label><small>authors: </small></label>
                 <br>
-                <input id="input-authors" name="author" type="text" readonly/>
+                <input id="input-authors" value="" name="author" type="text" readonly/>
                 <br>
                 <label><small>price:</small></label>
                 <p>{{ form.price }}</p>
@@ -64,7 +63,6 @@
             <div class="close"> + </div>
         </div>
     </div>
-</body>
 {% endblock content %}
 
 
