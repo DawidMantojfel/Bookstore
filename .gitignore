@@ -116,3 +116,18 @@ media/
 # **/migrations/**
 # !**/migrations
 # !**/migrations/__init__.py
+
+# node
+lib-cov
+*.seed
+*.csv
+*.dat
+*.out
+*.gz
+
+pids
+logs
+results
+build
+
+node_modules

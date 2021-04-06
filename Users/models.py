@@ -9,3 +9,4 @@ class User(AbstractUser):
         ('good', 'good'),
     )
     # opinion = models.CharField(max_length=1000, choices=OPINION_CHOICES)
+

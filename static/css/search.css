@@ -7,7 +7,6 @@
     color: black;
     font-family: 'Big Shoulders Display', cursive;
     font-size: 30px;
-
 }
 .flexbox-container {
     margin-left: auto;
@@ -58,7 +57,7 @@
     height: 100%;
     max-width: 85%;
 }
-.title{
+#title{
     font-family: 'Dancing Script', cursive;
     color: black;
     font-weight: 400;

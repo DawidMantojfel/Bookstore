@@ -1,11 +1,10 @@
 .background{
-    position: absolute;
     height: 100vh;
     background-color: #f5e5d5;
 }
 /*-----cart items-------*/
 .cart-page{
-    margin:20px auto;
+    padding-top:20px;
 }
 table{
     border-radius: 8px;
@@ -89,11 +88,12 @@ th:last-child{
     text-align: right;
 }
 #image-only{
-    background-position: center;
-    height: 100%;
+    display: block;
+    position: center;
     width: 100%;
-    background-image: url("/static/images/empty_cart.png");
-    background-repeat: no-repeat;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 #quantity ,#condition, .subtotal{
     border-right: solid 1px #f4e8dd;

@@ -8,7 +8,6 @@
     <link href="{% static '/css/basket.css' %}" rel="stylesheet">
     <script src="{% static 'js/total_price.js' %}"></script>
 </head>
-<body>
 <!---- cart item details ----->
 {% if items %}
 <div class="background">
@@ -24,7 +23,7 @@
             <tr>
                 <td>
                     <div class="cart-info">
-                        <a id="detail-link" href="{% url 'product_detail' item.product.id %}"><img id="image" src="{{item.product.image}}" alt="none"></a>
+                        <a id="detail-link" href="{{ item.product.infolink }}"><img id="image" src="{{item.product.image}}" alt="none"></a>
                         <div id="title-author-price">
                             <p>{{item.product.title}}</p>
                             <p><small>by: {{item.product.author}}</small></p>
@@ -54,8 +53,7 @@
     </div>
 </div>
 {% else %}
-<div id="image-only"></div>
+    <img src="{% static 'images/empty_cart.png' %}" alt="">
 {% endif %}
-</body>
 </html>
 {% endblock content %}
