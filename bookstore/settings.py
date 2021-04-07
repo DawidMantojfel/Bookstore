@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'Users',
     'Market',
     'crispy_forms',
+    'rest_framework',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -78,8 +80,12 @@ WSGI_APPLICATION = 'bookstore.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'bookstore.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bookstore',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 

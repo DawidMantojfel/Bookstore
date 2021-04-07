@@ -8,33 +8,39 @@
     <title>BookMarket</title>
     <script src="{% static 'js/add_to_cart.js' %}"></script>
 </head>
-
-<body>
-{%if products%}
+{% if products %}
 <div class="contain">
     <div class="flexbox-container">
         {% for product in products %}
             <div class="flex-row">
-                <a href="{% url 'product_detail' product.id %}"><img id="image" src="{{product.image}}" alt="None"></a>
+                <a href="{{ product.infolink }}"><img id="image" src="{{product.image}}" alt="None"></a>
                 <div class="right">
                     <div class="title-author">
-                        <a href="{% url 'product_detail' product.id %}"><p id="title">{{product.title}}</p></a>
+                        <a href="{{ product.infolink }}"><p id="title">{{product.title}}</p></a>
                         <p id="author">{{product.author}}</p>
                         <p id="date">date added:<br>{{product.date}}<br><strong>seller: {{product.user}}</strong></p>
                     </div>
                     <div class="price-details">
-                        <div class="top">
-                            <p class="price">{{ product.price }} PLN</p>
+                        <p class="price">{{ product.price }} PLN</p>
+
+                        {% if user.is_authenticated %}
+                        <div>
                             <p id="add-to-cart">add to cart</p>
+                            <button data-url = {% url 'home' %}
+                                    data-action="add"
+                                    data-product="{{product.id}}"
+                                    class="update-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
                         </div>
-                        <button data-action="add" data-product="{{product.id}}" class="update-cart"><i class="fas fa-plus"></i></button>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
 </div>
-{%endif%}
-</body>
+{% endif %}
+</html>
 {% endblock content %}
 

@@ -2,22 +2,20 @@
 $(document).ready(function() {
     document.querySelectorAll('.update-cart').forEach(item =>{
         item.addEventListener('click', () => {
+            var url = item.dataset.url
             var productId = item.dataset.product
             var action = item.dataset.action
             if(user === 'AnonymousUser'){
                 console.log('not logged in')
             }else{
-                UpdateUserOrder(productId, action)
+                UpdateUserOrder(productId, action, url)
             }
         })
     })
 })
 
-function UpdateUserOrder(productId, action){
+function UpdateUserOrder(productId, action, url){
     console.log('user logged in')
-
-    var url = '/market/add_to_cart/'
-
     fetch(url, {
         method: 'POST',
         headers: {

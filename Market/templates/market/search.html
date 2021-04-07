@@ -6,29 +6,44 @@
     <meta charset="UTF-8">
     <title>Search</title>
     <link href="{% static '/css/search.css' %}" rel="stylesheet">
+
 </head>
+<body>
 {% if books %}
 <div class="contain">
     <div class="flexbox-container">
         <h2 id="total">Found: {{ count }} books</h2>
-        {% for book in books %}
+        {% for book in books.books %}
             <div class="flex-row">
-                <a id="img_container" href="{% url 'product_detail' book.id %}">
+                <a id="img_container" href="{{ book.infolink }}">
                     <img src="{{ book.image }}" id="image" alt="">
                 </a>
                 <div class="row-right">
                     <div class="title-author">
-                        <p class="title"><small><i>TITLE:</i><br></small>{{ book.title }}</p>
+                        <p id="title">{{ book.title }}</p>
                         {% if book.description %}
                         <p id="description"><small><i>DESCRIPTION:</i><br></small>{{book.description}}</p>
                         {% endif %}
-                        <p class="author"><small><i>AUTHOR:</i><br></small>{{ book.authors }}</p>
+                        <small><i>AUTHOR:</i><br></small>
+                        <p class="author">{{ book.authors }}</p>
                     </div>
+                    {% if request.user.is_authenticated %}
                     <div>
-                        <button id="btn" type="button" class="myBtn sell_btn">Sell This Book</button>
+                        <button id="btn"
+                                data-title="{{ book.title }}"
+                                data-author="{{ book.authors }}"
+                                data-description="{{ book.description }}"
+                                data-image="{{ book.image }}"
+                                data-infolink="{{ book.infolink }}"
+                                type="button"
+                                class="myBtn sell_btn">
+                            Sell This Book
+                        </button>
                     </div>
+                    {% endif %}
                 </div>
             </div>
+
         {% endfor %}
     </div>
 </div>
@@ -42,27 +57,34 @@
         <div class="modal-content">
             <form method="post">
                 {% csrf_token %}
-                <label><small>title: </small></label>
-                <br>
-                <input id="input-title" value="" name="title" type="text" readonly/>
-                <br>
-                <label><small>authors: </small></label>
-                <br>
-                <input id="input-authors" value="" name="author" type="text" readonly/>
-                <br>
-                <label><small>price:</small></label>
-                <p>{{ form.price }}</p>
-                <label><small>quantity:</small></label>
-                <p>{{ form.quantity }}</p>
-                <label><small>condition:</small></label>
-                <p>{{ form.condition }}</p>
-                <input value="" type="text" name="image" id="input-image" hidden />
-                <img name="image-name" width="150" height="250" id="modal-image" src="" alt="none" >
-                <button type="submit" class="sell-btn">sell</button>
+            <label><small>title: </small></label>
+            <br>
+            <input name="title" id="input-title" value="" type="text" readonly/>
+            <br>
+            <label><small>authors: </small></label>
+            <br>
+            <input name="author" id="input-authors" value="" type="text" readonly/>
+            <br>
+            <label><small>price:</small></label>
+            <p>{{ form.price }}</p>
+            <label><small>quantity:</small></label>
+            <p>{{ form.quantity }}</p>
+            <label><small>condition:</small></label>
+            <p>{{ form.condition }}</p>
+            <img  width="150" height="250" id="modal-image" src="" alt="none" >
+            <button
+                    value=""
+                    name="book_values"
+                    id="sell_button"
+                    type="submit"
+                    class="sell-btn">
+                sell
+            </button>
             </form>
             <div class="close"> + </div>
         </div>
     </div>
+</body>
 {% endblock content %}
 
 
